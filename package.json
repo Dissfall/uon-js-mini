@@ -28,6 +28,9 @@
   },
   "dependencies": {
     "@types/node": "^13.1.8",
+    "axios": "^0.19.2",
+    "date-fns": "^2.9.0",
+    "smart-request-balancer": "^2.0.0",
     "tsc": "^1.20150623.0",
     "typescript": "^3.7.5"
   },
