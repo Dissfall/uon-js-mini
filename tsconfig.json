@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "downlevelIteration": true,
+    "target": "es6",
+    "lib": ["esnext"],
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./dist",
+    "strict": true,
+    "strictNullChecks": true
+  },
+  "include": [
+    "src"
+  ]
+}
