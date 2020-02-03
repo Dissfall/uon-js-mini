@@ -18,6 +18,10 @@ export interface UONCountriesRes {
   }
 }
 
+export type UsersIterable<T> = {
+  users: T[]
+}
+
 export type UONManagerRes = { users: UONManager[] };
 
 export interface UONManager {
@@ -69,8 +73,7 @@ export interface UONUserCreateReq {
   u_note?: string
 }
 
-export interface UONUserRes {
-  users: [{
+export interface User {
     u_id: number
     u_type: number
     u_name: string
@@ -88,5 +91,6 @@ export interface UONUserRes {
     u_zagran_expire?: string
     u_zagran_organization?: string
     u_note?: string
-  }]
 }
+
+export interface UONUserRes extends UsersIterable<User> {}

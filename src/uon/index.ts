@@ -9,6 +9,7 @@ import {
   UONManagerRes,
   UONUserCreateReq,
   UONUserRes,
+  User,
 } from './types'
 
 export { UONReq }
@@ -142,7 +143,36 @@ class UON {
     data: UONUserCreateReq
   ): Promise<any> {
     const path = 'user/update/' + id
-    return this.request<any>(path, data)
+    return this.request<UONUserRes>(path, data)
+  }
+
+  public async getTourists(page?: number, toEnd?: boolean): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      if (page) {
+        const path = `users/${page}`
+        resolve(this.request<any>(path))
+      } else {
+        let currentPage = 1
+        let tourists: User[] = []
+        let partition: User[] = []
+
+        do {
+          const path = `users/${currentPage}`
+          console.log(path)
+          try {
+            partition = (await this.request<UONUserRes>(path)).users
+            tourists.push(...partition)
+          } catch {
+            reject('Error parsing tourists data')
+          }
+          console.log(partition.length)
+          console.log(tourists.length)
+          currentPage++
+        } while (partition.length > 99)
+
+        resolve(tourists)
+      }
+    })
   }
 }
 
