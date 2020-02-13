@@ -1,3 +1,4 @@
+import filterAsync from 'node-filter-async'
 import Queue = require('smart-request-balancer')
 import axios from 'axios'
 
@@ -146,32 +147,29 @@ class UON {
     return this.request<UONUserRes>(path, data)
   }
 
-  public async getTourists(page?: number, toEnd?: boolean): Promise<any> {
+  public async getTourists(range?: number[], filter?: (value: User, index?: number) => Promise<boolean>): Promise<any> {
     return new Promise(async (resolve, reject) => {
-      if (page) {
-        const path = `users/${page}`
-        resolve(this.request<any>(path))
-      } else {
-        let currentPage = 1
-        let tourists: User[] = []
-        let partition: User[] = []
+      let currentPage = range ? range[0] : 1
+      let lastPage: number = range ? range[1] : Infinity
+      let tourists: User[] = []
+      let partition: User[] = []
 
-        do {
-          const path = `users/${currentPage}`
-          console.log(path)
-          try {
-            partition = (await this.request<UONUserRes>(path)).users
+      do {
+        const path = `users/${currentPage}`
+        try {
+          partition = (await this.request<UONUserRes>(path)).users
+          if (filter) {
+            tourists.push(...await filterAsync(partition, filter))
+          } else {
             tourists.push(...partition)
-          } catch {
-            reject('Error parsing tourists data')
           }
-          console.log(partition.length)
-          console.log(tourists.length)
-          currentPage++
-        } while (partition.length > 99)
+        } catch {
+          reject('Error parsing tourists data')
+        }
+        currentPage++
+      } while (partition.length > 99 && currentPage <= lastPage)
 
-        resolve(tourists)
-      }
+      resolve(tourists)
     })
   }
 }
