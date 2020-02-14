@@ -157,4 +157,84 @@ export interface UONLeadByTouristRes {
   leads: Lead[]
 }
 
+export interface File {
+  [propName: string]: any;
+}
+
+export interface Payment {
+  id: number;
+  date_create: string;
+  date_plan: string;
+  reason: string;
+  cash_id: number;
+  payment_form_id: number;
+  prepay_id: number;
+  number: string;
+  type_id: number;
+  cio_id: number;
+  in_plan: number;
+  is_bonus_pay: number;
+  is_deposit: number;
+  from1c: number;
+  office_id: number;
+  client_id: number;
+  note: string;
+  type_name: string;
+  cio_name: string;
+  price: number;
+  rate: number;
+  currency_id: number;
+  currency: string;
+  currency_code: string;
+  r_id: number;
+  request?: Request;
+}
+
+export interface Request {
+  id: number;
+  id_system: number;
+  id_internal: string;
+  supplier_id: number;
+  dat: string;
+  dat_request: string;
+  office_id: number;
+  manager_id: number;
+  client_id: number;
+  client_surname: string;
+  client_name: string;
+  client_sname: string;
+  client_phone: string;
+  client_phone_mobile: string;
+  client_email: string;
+  client_company: string;
+  client_inn: string;
+  client_kpp: string;
+  date_begin: string;
+  date_end: string;
+  status_id: string;
+  status: string;
+  calc_price_netto: number;
+  calc_price: number;
+  calc_increase: number;
+  calc_decrease: number;
+  calc_client: number;
+  calc_partner: number;
+  dat_updated: string;
+  created_at: string;
+  notes: string;
+  company_id: number;
+  company_name: string;
+  company_fullname: string;
+  company_name_rus: string;
+  company_inn: string;
+  services: Service[];
+  payments: Payment[];
+  files: File[];
+  tourists: User[];
+}
+
+export interface UONRequestByUserRes {
+  requests: Request[]
+}
+
 export interface UONUserRes extends UsersIterable<User> {}

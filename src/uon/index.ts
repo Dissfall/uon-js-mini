@@ -11,6 +11,8 @@ import {
   UONUserCreateReq,
   UONUserRes,
   UONLeadByTouristRes,
+  UONRequestByUserRes,
+  Request,
   Lead,
   User,
 } from './types'
@@ -180,6 +182,17 @@ class UON {
       const path = `lead-by-client/${touristId}`
       try {
         resolve((await this.request<UONLeadByTouristRes>(path)).leads)
+      } catch {
+        reject()
+      }
+    })
+  }
+
+  public async getRequestByTourist(touristId: number): Promise<Request[]> {
+    return new Promise(async (resolve, reject) => {
+      const path = `request-by-client/${touristId}`
+      try {
+        resolve((await this.request<UONRequestByUserRes>(path)).requests)
       } catch {
         reject()
       }
