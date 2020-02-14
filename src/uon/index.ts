@@ -152,7 +152,7 @@ class UON {
     return this.request<UONUserRes>(path, data)
   }
 
-  public async getTourists(range?: number[], filter?: (value: User, index?: number) => Promise<boolean>): Promise<any> {
+  public async getTourists(range?: number[], filter?: (value: User, index?: number) => Promise<boolean>): Promise<User[]> {
     return new Promise(async (resolve, reject) => {
       let currentPage = range ? range[0] : 1
       let lastPage: number = range ? range[1] : Infinity
