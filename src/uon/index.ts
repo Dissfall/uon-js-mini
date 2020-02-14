@@ -2,6 +2,7 @@ import filterAsync from 'node-filter-async'
 import Queue = require('smart-request-balancer')
 import axios from 'axios'
 
+import * as types from './types'
 import {
   UONReq,
   UONCountriesRes,
@@ -201,3 +202,4 @@ class UON {
 }
 
 export default UON
+export { types }
