@@ -93,4 +93,68 @@ export interface User {
     u_note?: string
 }
 
+export interface Service {
+  id: number;
+  date_begin: string;
+  date_end: string;
+  description: string;
+  in_package: number;
+  service_type_id: number;
+  price_netto: number;
+  rate_netto: number;
+  currency_id_netto: number;
+  price: number;
+  rate: number;
+  currency_id: number;
+  discount_in_percent: number;
+  tourists_count: number;
+  tourists_child_count: number;
+  tourists_baby_count: number;
+  is_active: number;
+  service_type: string;
+  country_id: number;
+  country: string;
+  country_en: string;
+  currency_netto: string;
+  currency_code_netto: string;
+  currency: string;
+  currency_code: string;
+}
+
+export interface Lead {
+  id: number;
+  id_system: number;
+  supplier_id: number;
+  dat: string;
+  dat_lead: string;
+  office_id: number;
+  manager_id: number;
+  manager_surname: string;
+  manager_sname: string;
+  manager_name: string;
+  client_id: number;
+  client_name: string;
+  client_phone_mobile: string;
+  social_vk: string;
+  source_id: number;
+  source: string;
+  status_id: string;
+  status: string;
+  client_requirements_days_from: number;
+  client_requirements_days_to: number;
+  client_requirements_tourists_adult_count: number;
+  client_requirements_tourists_child_count: number;
+  client_requirements_tourists_baby_count: number;
+  client_requirements_budget: number;
+  dat_updated: string;
+  created_ad: string;
+  notes: string[];
+  services: Service[];
+  files: string[];
+}
+
+export interface UONLeadByTouristRes {
+  leads: Lead[]
+}
+
 export interface UONUserRes extends UsersIterable<User> {}

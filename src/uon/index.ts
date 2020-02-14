@@ -10,6 +10,8 @@ import {
   UONManagerRes,
   UONUserCreateReq,
   UONUserRes,
+  UONLeadByTouristRes,
+  Lead,
   User,
 } from './types'
 
@@ -170,6 +172,17 @@ class UON {
       } while (partition.length > 99 && currentPage <= lastPage)
 
       resolve(tourists)
+    })
+  }
+
+  public async getLeadByTourist(touristId: number): Promise<Lead[]> {
+    return new Promise(async (resolve, reject) => {
+      const path = `lead-by-client/${touristId}`
+      try {
+        resolve((await this.request<UONLeadByTouristRes>(path)).leads)
+      } catch {
+        reject()
+      }
     })
   }
 }
