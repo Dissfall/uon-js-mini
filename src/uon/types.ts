@@ -138,6 +138,8 @@ export interface Lead {
   social_vk: string;
   source_id: number;
   source: string;
+  travel_type_id: number
+  travel_type: string
   status_id: string;
   status: string;
   client_requirements_days_from: number;
@@ -211,6 +213,9 @@ export interface Request {
   client_kpp: string;
   date_begin: string;
   date_end: string;
+  source: string
+  travel_type_id: number
+  travel_type: string
   status_id: string;
   status: string;
   calc_price_netto: number;
