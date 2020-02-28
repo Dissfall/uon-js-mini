@@ -4,6 +4,9 @@
   "description": "Wrapper for U-ON API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*.{js,d.ts,map}"
+  ],
   "repository": "git@github.com:AlexeyShulga/homotouristus.git",
   "author": "dissfall <dissfall@fastmail.com>",
   "license": "MIT",
