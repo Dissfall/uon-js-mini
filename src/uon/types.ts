@@ -119,6 +119,7 @@ export interface Service {
   currency_code_netto: string;
   currency: string;
   currency_code: string;
+  flights: Service
 }
 
 export interface Lead {
