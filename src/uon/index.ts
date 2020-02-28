@@ -2,7 +2,7 @@ import filterAsync from 'node-filter-async'
 import Queue = require('smart-request-balancer')
 import axios from 'axios'
 
-export *  from './types'
+export * from './types'
 import {
   UONReq,
   UONCountriesRes,
@@ -152,7 +152,10 @@ class UON {
     return this.request<UONUserRes>(path, data)
   }
 
-  public async getTourists(range?: number[], filter?: (value: User, index?: number) => Promise<boolean>): Promise<User[]> {
+  public async getTourists(
+    range?: number[],
+    filter?: (value: User, index?: number) => Promise<boolean>
+  ): Promise<User[]> {
     return new Promise(async (resolve, reject) => {
       let currentPage = range ? range[0] : 1
       let lastPage: number = range ? range[1] : Infinity
@@ -164,7 +167,7 @@ class UON {
         try {
           partition = (await this.request<UONUserRes>(path)).users
           if (filter) {
-            tourists.push(...await filterAsync(partition, filter))
+            tourists.push(...(await filterAsync(partition, filter)))
           } else {
             tourists.push(...partition)
           }
@@ -176,6 +179,11 @@ class UON {
 
       resolve(tourists)
     })
+  }
+
+  public async getRequest(id: number): Promise<{ request: Array<Request> }> {
+    const path = `request/${id}`
+    return this.request(path)
   }
 
   public async getLeadByTourist(touristId: number): Promise<Lead[]> {
