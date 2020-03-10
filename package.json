@@ -7,7 +7,7 @@
   "files": [
     "dist/**/*.{js,d.ts,map}"
   ],
-  "repository": "git@github.com:AlexeyShulga/homotouristus.git",
+  "repository": "git@github.com:Dissfall/uon-js-mini.git",
   "author": "dissfall <dissfall@fastmail.com>",
   "license": "MIT",
   "scripts": {
