@@ -144,6 +144,11 @@ class UON {
     return this.request<UONUserRes>(path)
   }
 
+  public async getTouristById(touristId: number): Promise<{ user: Array<User> }> {
+    const path = 'user/' + touristId
+    return this.request<{ user: Array<User> }>(path)
+  }
+
   public async touristUpdate(
     id: number | string,
     data: UONUserCreateReq
