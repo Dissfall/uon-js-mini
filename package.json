@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@types/node": "^13.1.8",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "date-fns": "^2.9.0",
     "node-filter-async": "^1.1.4",
     "smart-request-balancer": "^2.0.0",
